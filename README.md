@@ -1,4 +1,10 @@
-# Roccojiang Tap
+# Personal Homebrew Tap
+
+## Formulae
+
+| **Repository**                                                  | **Formula**                        | **Description**           |
+| --------------------------------------------------------------- | ---------------------------------- | ------------------------- |
+| [font-iosepta-mono](https://github.com/roccojiang/iosepta-mono) | [cask](Casks/font-iosepta-mono.rb) | Custom Iosevka font build |
 
 ## How do I install these formulae?
 
