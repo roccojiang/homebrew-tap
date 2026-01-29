@@ -1,6 +1,6 @@
 cask "font-iosepta-mono" do
-  version "1.2.0"
-  sha256 "70d572040ccd26a8ddb091532a3992ce7463b904c0a6924b7132cb14137f4c62"
+  version "2.0.0"
+  sha256 "5449cd6c1c5b13f3a3192ab90d4412f7adbb3e5c0574650c5b2c11c3f9d43a33"
 
   url "https://github.com/roccojiang/iosepta-mono/releases/download/v#{version}/IoseptaMono-SuperTTC-v#{version}.zip"
   name "Iosepta Mono"
