@@ -1,0 +1,48 @@
+name: Brew Bump
+
+permissions: {}
+
+on:
+  repository_dispatch:
+    types: [iosepta-mono-release]
+  workflow_dispatch:
+
+jobs:
+  bump:
+    name: Bump Homebrew packages
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # Set up for Homebrew
+      - name: Set up Homebrew
+        id: setup-homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Cache Homebrew bundler RubyGems
+        id: cache
+        uses: actions/cache@v5
+        with:
+          path: ${{ steps.setup-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.setup-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Homebrew bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
+
+      - name: Configure git for Homebrew
+        uses: Homebrew/actions/git-user-config@main
+
+      # Bump formulae/casks
+      - name: Tap roccojiang/tap
+        run: brew tap roccojiang/tap
+
+      - name: Bump formula/cask versions
+        uses: Homebrew/actions/bump-packages@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fork: false
+          casks: >
+            font-iosepta-mono
