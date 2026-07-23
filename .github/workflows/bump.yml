@@ -10,6 +10,9 @@ on:
 jobs:
   bump:
     name: Bump Homebrew packages
+    # Linux runner should be fine for casks since https://github.com/Homebrew/brew/issues/14341
+    # But if things break in the future, may have to switch to macos-latest
+    # (See https://hybras.dev/posts/2023-01-07-homebrew-bump/ for more context)
     runs-on: ubuntu-slim
     permissions:
       contents: write
